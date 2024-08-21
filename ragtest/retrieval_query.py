@@ -58,7 +58,7 @@ def load_data():
 # Initialize components
 entities, relationships, text_units, reports, description_embedding_store = load_data()
 
-api_key = "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"
+api_key = "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"
 llm_model = "gpt-4o"
 embedding_model = "text-embedding-3-small"
 

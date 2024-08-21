@@ -1,1 +1,102 @@
+# Legal Research API Documentation
 
+This documentation provides details on the setup and usage of the Legal Research API, which consists of two main components:
+
+1. The **Retrieval Query API** (located in the `ragtest` folder)
+2. The **Legal Research API** (located in the `ResearchCrew` folder)
+
+## Project Structure
+
+The project is organized into the following folders:
+
+- `ragtest`: Contains the Retrieval Query API, which handles search queries and provides relevant information to the Legal Research API.
+- `ResearchCrew`: Contains the Legal Research API, which performs legal research and analysis using information from the Retrieval Query API.
+
+## Retrieval Query API
+
+The Retrieval Query API is responsible for managing search queries and supplying pertinent information to the Legal Research API.
+
+### Running the Retrieval Query API
+
+1. Navigate to the `ragtest` folder:
+   ```bash
+   cd ragtest
+   ```
+2. Start the FastAPI server:
+   ```bash
+   uvicorn main:app --reload --port 8000
+   ```
+   This command starts the Retrieval Query API server on `http://127.0.0.1:8000`.
+
+### API Endpoints
+
+The Retrieval Query API provides the following endpoint:
+
+#### `/search`
+- **Method:** POST
+- **Request Body:**
+  ```json
+  {
+    "question": "What is the legal precedent for this contract dispute?"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "response": "The relevant legal precedent for this contract dispute is..."
+  }
+  ```
+  This endpoint accepts a search query and returns the relevant information from the search engine.
+
+## Legal Research API
+
+The Legal Research API utilizes the Retrieval Query API to perform comprehensive legal research and analysis.
+
+### Running the Legal Research API
+
+1. Navigate to the `ResearchCrew` folder:
+   ```bash
+   cd ResearchCrew
+   ```
+2. Start the FastAPI server:
+   ```bash
+   uvicorn main:app --reload --port 8001
+   ```
+   This command starts the Legal Research API server on `http://127.0.0.1:8001`.
+
+### API Endpoints
+
+The Legal Research API provides the following endpoint:
+
+#### `/legal-research`
+- **Method:** POST
+- **Request Body:**
+  ```json
+  {
+    "case_details": "A client is facing a lawsuit related to a contract dispute. The client claims that the other party breached the terms of the contract, while the other party claims that the client failed to uphold their end of the agreement. The client needs assistance in researching the relevant laws and case law to build a strong legal strategy."
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "result": "The legal research document containing the analysis and findings..."
+  }
+  ```
+  This endpoint accepts case details and returns a comprehensive legal research document with analysis and findings.
+
+## Workflow
+
+1. Start the Retrieval Query API server in the `ragtest` folder.
+2. Start the Legal Research API server in the `ResearchCrew` folder.
+3. The Legal Research API will use the Retrieval Query API to gather relevant information needed for legal research.
+4. The Legal Research API will analyze the gathered information and return the final research document as the response.
+
+## Future Enhancements
+
+Some potential future enhancements for the Legal Research API include:
+
+- Implementing authentication and authorization mechanisms
+- Adding more endpoints for different legal research tasks
+- Integrating the API with external legal databases or APIs
+- Improving the performance and scalability of the legal research process
+- Providing more detailed error handling and logging

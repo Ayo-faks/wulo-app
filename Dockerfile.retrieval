@@ -1,0 +1,12 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install dependencies (including uvicorn)
+COPY ./ragtest/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt -U uvicorn  # -U updates existing packages
+
+COPY ragtest/ .
+
+# Your CMD or ENTRYPOINT instruction (might need to adjust the path)
+CMD ["uvicorn", "retrieval_query:app", "--host", "0.0.0.0", "--port", "8000"]
